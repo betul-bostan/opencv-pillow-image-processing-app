@@ -324,7 +324,6 @@ def upload():
     
     save_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
     f.save(save_path)
-    f.save(save_path)
     session["uploaded_img_path"] = save_path
     return redirect(url_for("operations"))
 
@@ -370,4 +369,7 @@ def process(action):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=9000)
+    app.run(
+        debug=os.environ.get("FLASK_DEBUG", "false").lower() == "true",
+        port=9000
+    )
