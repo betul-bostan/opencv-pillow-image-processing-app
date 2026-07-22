@@ -5,7 +5,7 @@ import numpy as np
 from PIL import Image, ImageOps, ImageFilter, ImageEnhance
 
 app = Flask(__name__)
-app.secret_key = "gizli_anahtar_buraya"
+app.secret_key = os.environ.get("SECRET_KEY", "development-secret-key")
 
 # Klasör ayarları
 UPLOAD_FOLDER = "static/uploads"
