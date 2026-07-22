@@ -3,6 +3,7 @@ import os
 import cv2
 import numpy as np
 from PIL import Image, ImageOps, ImageFilter, ImageEnhance
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "development-secret-key")
@@ -316,7 +317,13 @@ def upload():
     if f.filename == "":
         return redirect(url_for("index"))
 
-    save_path = os.path.join(app.config["UPLOAD_FOLDER"], f.filename)
+    filename = secure_filename(f.filename)
+    
+    if not filename:
+        return redirect(url_for("index"))
+    
+    save_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+    f.save(save_path)
     f.save(save_path)
     session["uploaded_img_path"] = save_path
     return redirect(url_for("operations"))
