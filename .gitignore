@@ -1,0 +1,41 @@
+# macOS
+.DS_Store
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment variables
+.env
+.env.*
+
+# IDE settings
+.vscode/
+.idea/
+
+# Flask runtime files
+instance/
+.flaskenv
+
+# User uploads and generated outputs
+static/uploads/*
+static/processed/*
+
+# Keep directories when needed locally
+!static/uploads/.gitkeep
+!static/processed/.gitkeep
+
+# Test and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Temporary files
+*.log
+*.tmp
